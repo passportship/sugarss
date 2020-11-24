@@ -329,12 +329,10 @@ module.exports = function tokenize (input) {
             next = css.length - 1
           } else {
             RE_STRING_INTERPOLATION.lastIndex = RE_WORD_END.lastIndex - 3;
-            RE_STRING_INTERPOLATION.test(css);
-            if (RE_STRING_INTERPOLATION.lastIndex === 0) {
-              next = RE_WORD_END.lastIndex - 2;
-            } else {
+            if (RE_STRING_INTERPOLATION.test(css)) {
               next = RE_STRING_INTERPOLATION.lastIndex - 1;
-
+            } else {
+              next = RE_WORD_END.lastIndex - 2;
             }
           }
 
