@@ -20,7 +20,7 @@ const COMMA = ','.charCodeAt(0)
 const RE_AT_END = /[\t\n\f\r "'()/;\\{]/g
 const RE_NEW_LINE = /[\n\f\r]/g
 const RE_WORD_END = /[\t\n\f\r !"'(),:;@\\{}]|\/(?=\*)/g
-const RE_STRING_INTERPOLATION_END = /#{(?:.+?)(})/s
+const RE_STRING_INTERPOLATION = /^#{(?:.+?)(})/s
 const RE_BAD_BRACKET = /.[\n"'(/\\]/
 
 module.exports = function tokenize (input) {
@@ -328,12 +328,12 @@ module.exports = function tokenize (input) {
           if (RE_WORD_END.lastIndex === 0) {
             next = css.length - 1
           } else {
-            RE_STRING_INTERPOLATION_END.lastIndex = RE_WORD_END.lastIndex - 3;
-            RE_STRING_INTERPOLATION_END.test(css);
-            if (RE_STRING_INTERPOLATION_END.lastIndex === 0) {
+            RE_STRING_INTERPOLATION.lastIndex = RE_WORD_END.lastIndex - 3;
+            RE_STRING_INTERPOLATION.test(css);
+            if (RE_STRING_INTERPOLATION.lastIndex === 0) {
               next = RE_WORD_END.lastIndex - 2;
             } else {
-              next = RE_STRING_INTERPOLATION_END.lastIndex - 1;
+              next = RE_STRING_INTERPOLATION.lastIndex - 1;
 
             }
           }
