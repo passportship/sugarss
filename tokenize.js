@@ -328,7 +328,7 @@ module.exports = function tokenize (input) {
           if (RE_WORD_END.lastIndex === 0) {
             next = css.length - 1
           } else {
-            RE_STRING_INTERPOLATION.lastIndex = RE_WORD_END.lastIndex - 3;
+            RE_STRING_INTERPOLATION.lastIndex = RE_WORD_END.lastIndex - 2;
             if (RE_STRING_INTERPOLATION.test(css)) {
               next = RE_STRING_INTERPOLATION.lastIndex - 1;
             } else {
